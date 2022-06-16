@@ -1,5 +1,11 @@
 ﻿public class Program
 {
+    public static void Main(string[] args)
+    {
+        Program p = new Program();
+        Console.WriteLine(p.StringRotation("MyString", 2));
+    }
+
     public Dictionary<string,int> AboveBelow(List<int> integers, int comparisonValue)
     {
         Dictionary<string, int> result = new Dictionary<string, int>();
@@ -26,11 +32,12 @@
 
     public string StringRotation(string original, int rotationAmount)
     {
-        if (rotationAmount <= original.Length)
+        if (rotationAmount >= 0)
         {
-            return original.Substring(original.Length - rotationAmount) + original.Substring(0, original.Length - rotationAmount);
-        }
-        else
+            int adjustedRotationAmount = rotationAmount % original.Length; //Account for rotationAmount being greater than string length
+
+            return original.Substring(original.Length - adjustedRotationAmount) + original.Substring(0, original.Length - adjustedRotationAmount);
+        } else
         {
             return original;
         }
